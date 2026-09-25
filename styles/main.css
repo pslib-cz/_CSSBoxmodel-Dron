@@ -188,8 +188,6 @@
 
     .gallery {
         --gap: .5em;
-        /* flow-root: kontejner obalí plovoucí položky */
-        display: flow-root;
         margin: calc(-1 * var(--gap));
     }
     .gallery__item {
@@ -200,8 +198,11 @@
         width: 100%;
     }
     @media (min-width: 48em) {
+        /* 2 × 50 % = 100 % → mezera mezi položkami v HTML by druhou položku zalomila */
         .gallery__item {
-            float: left;
+            display: inline-block;
+            /* bez top by pod obrázkem zbylo místo pro dotažnice písma (baseline) */
+            vertical-align: top;
             width: calc(50% - 2 * var(--gap));
         }
         .gallery__item--wide {
